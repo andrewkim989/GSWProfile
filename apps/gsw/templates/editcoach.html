@@ -1,0 +1,161 @@
+<html><head>
+        <title>Edit Coach Profile</title>
+        <link rel="stylesheet" type="text/css" href="blockstyle.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = device - width">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+        <style>
+            #top {
+                padding: 15px;
+                background-color: #daf8da;
+                padding-left: 50px;
+                font-size: 20px;
+            }
+            #topright {
+                display: inline-block;
+                vertical-align: top;
+                font-size: 25px;
+                padding-left: 800px;
+            }
+            h4 {
+                display: inline-block;
+                vertical-align: top;
+                font-size: 30px;
+            }
+            h5 {
+                display: inline-block;
+                vertical-align: top;
+                color: rgb(141, 168, 21);
+                font-size: 30px;
+            }
+            #wrapper {
+                padding: 10px;
+                width: 700px;
+                margin-left: 50px;
+                margin-top: 30px;
+            }
+            #blackline {
+                height: 3px;
+                background-color: black;
+            }
+            #greenbox {
+                background-color: #daf8da;
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "top">
+            <h4>Edit Coach Profile</h4>
+            <div id = "topright">
+                <a href = "/coach/{{coach.id}}">Back</a>
+                <h5>|</h5>
+                <a href = "/logout">Logout!</a>
+            </div>
+        </div>
+        <div id = "blackline"></div>
+        <div id = "wrapper">
+            <p style = "color: blue;">* = Required fields</p>
+            {% for message in messages %}
+                {% if 'coach' in message.tags %}
+                    <p class = "text-danger">{{message}}</p>
+                {% endif %}
+            {% endfor %}
+            <form action="/editcoach_process/{{coach.id}}" method = "post">
+                {% csrf_token %}
+                Name * : <input type = "text" name = "name" value = "{{coach.name}}">
+                <br>
+                <br>
+                Image: <input type = "url" name = "image" placeholder = "Insert image URL here" value="{{coach.image}}">
+                <br>
+                <br>
+                Birth date * : 
+                <br>
+                <input type = "text" name = "birth_month" maxlength = "2" value = "{{coach.birth_month}}"> /
+                <input type = "text" name = "birth_day" maxlength = "2" value = "{{coach.birth_day}}"> /
+                <input type = "text" name = "birth_year" maxlength = "4" value = "{{coach.birth_year}}">
+                <br>
+                <br>
+                Height: (foot, inches) 
+                <br>
+                <input type = "text" name = "height_foot" maxlength = "1" value = "{{coach.height_foot}}"> ft.
+                <input type = "text" name = "height_inches" maxlength = "2" value = "{{coach.height_inches}}"> in.
+                <br>
+                <br>
+                Weight: (in pounds) 
+                <input type = "text" name = "weight" maxlength = "3" value = "{{coach.weight}}">
+                <br>
+                <br>
+                Position:
+                <select name = "position">
+                    <option value = "Point Guard">None</option>
+                    <option value = "Point Guard">Point Guard</option>
+                    <option value = "Shooting Guard">Shooting Guard</option>
+                    <option value = "Small Forward">Small Forward</option>
+                    <option value = "Power Forward">Power Forward</option>
+                    <option value = "Center">Center</option>
+                </select>
+                <br>
+                <br>
+                Teams played: 
+                <br>
+                <textarea name = "teams_played" rows = "3" cols = "30">{{coach.teams_played}}</textarea>
+                <br>
+                <br>
+                Teams coached: 
+                <br>
+                <textarea name = "teams_coached" rows = "3" cols = "30">{{coach.teams_coached}}</textarea>
+                <br>
+                <br>
+                College: <input type = "text" name = "college" maxlength = "50" value = "{{coach.college}}">
+                <br>
+                <br>
+                NBA Draft: (Example: 1988 / Round: 2 / Pick: 50th overall)
+                <br>
+                <input type = "text" name = "draft" value = "{{coach.draft}}">
+                <br>
+                <br>
+                Playing career: (Type (None) if the coach has not played in the NBA)
+                <br>
+                <input type = "text" name = "playfrom" maxlength = "6"
+                value = "{{coach.playfrom}}"> to 
+                <input type = "text" name = "playto" maxlength = "6" value = "{{coach.playto}}">
+                <br>
+                <br>
+                Coaching career * : 
+                <br>
+                <input type = "text" name = "coachfrom" maxlength = "4"=
+                value = "{{coach.coachfrom}}"> to <input type = "text" name = "coachto"
+                maxlength = "7" value = "{{coach.coachto}}">
+                <br>
+                <br>
+                Coach Position * : (Head coach, assistant coach, etc.)
+                <br>
+                <input type = "text" name = "coach_position" value = "Head Coach">
+                <br>
+                <br>
+                Other info:
+                <br>
+                <textarea name = "info" rows = "3" cols = "80">{{coach.info}}</textarea>
+                <br>
+                <br>
+                Description * (Must be at least 50 characters long):
+                <br>
+                <textarea name = "description" rows = "3" cols = "80">{{coach.description}}</textarea>
+                <br>
+                Additional description: (optional)
+                <br>
+                <textarea name = "description2" rows = "3" cols = "80">{{coach.description2}}</textarea>
+                <br>
+                <textarea name = "description3" rows = "3" cols = "80">{{coach.description3}}</textarea>
+                <br>
+                <br>
+                <input type = "submit" value = "Submit!">
+            </form>
+        </div>
+        <div id = "blackline"></div>
+        <div id = "greenbox"></div>
+    </body
+></html>

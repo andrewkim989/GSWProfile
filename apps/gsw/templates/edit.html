@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>Edit Your Profile</title>
+        <link rel = "stylesheet" type = "text/css" href = "blockstyle.css">
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width = device - width">
+
+        <link rel = "stylesheet"
+        href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity = "sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin = "anonymous">
+
+        <style>
+            #top {
+                padding: 12px;
+                padding-left: 50px;
+                background-color: rgb(117, 151, 247);
+            }
+            h4 {
+                font-size: 30px;
+                vertical-align: top;
+                display: inline-block;
+            }
+            #topright {
+                vertical-align: top;
+                display: inline-block;
+                padding-left: 800px;
+            }
+            #topright a {
+                font-size: 20px;
+                color: rgb(231, 248, 200);
+            }
+            #wrapper {
+                background-color: lightgrey;
+                height: 520px;
+            }
+            #warning {
+                padding-left: 50px;
+                padding-top: 20px;
+            }
+            #main {
+                padding: 20px;
+                padding-left: 70px;
+                width: 800px;
+                vertical-align: top;
+                display: inline-block;
+            }
+            #blackline {
+                height: 3px;
+                background-color: black;
+            }
+            #bottomcolor {
+                background-color: rgb(117, 151, 247);
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "top">
+            <h4>Edit Profile</h4>
+            <div id = "topright">
+                <a class = "btn" href = "/profile">Back</a>
+                <h4> | </h4>
+                <a class = "btn" href = "/">Home</a>
+                <h4> | </h4>
+                <a class = "btn" href = "/logout">Logout!</a>
+            </div>
+        </div>
+        <div id = "blackline"></div>
+        <div id = "wrapper">
+            <div id = "warning">
+            {% for message in messages%}
+                {% if 'edit' in message.tags %}
+                    <p class = "text-danger">{{message}}</p>
+                {% endif %}
+            {% endfor %}
+            </div>
+            <div id = "main">
+                <form action = '/editprofile_process' method = 'post'>
+                    {% csrf_token %}
+                    <h5>First Name:</h5>
+                    <input type = 'text' name = 'first_name'>
+                    <br>
+                    <br>
+                    <h5>Last Name:</h5>
+                    <input type = 'text' name = 'last_name'>                        
+                    <br>
+                    <br>
+                    <h5>E-mail:</h5>
+                    <input type = 'text' name = 'email'>
+                    <br>
+                    <br>
+                    <input type = 'submit' value = 'Update'>
+                </form>
+                <br>
+            </div>
+        </div>
+        <div id = "blackline"></div>
+        <div id = "bottomcolor"></div>
+    </body>
+</html>

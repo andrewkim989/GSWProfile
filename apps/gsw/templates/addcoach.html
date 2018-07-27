@@ -1,0 +1,174 @@
+<html>
+    <head>
+        <title>Add Coach</title>
+        <link rel="stylesheet" type="text/css" href="blockstyle.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = device - width">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+        <style>
+            #top {
+                padding: 12px;
+                padding-left: 40px;
+                background-color: #dae8f8;
+                font-size: 20px;
+            }
+            h3 {
+                vertical-align: top;
+                display: inline-block;
+                font-size: 30px;
+            }
+            h4 {
+                vertical-align: top;
+                display: inline-block;
+                font-size: 30px;
+                color: rgb(141, 168, 21);
+            }
+            #topright {
+                vertical-align: top;
+                display: inline-block;
+                padding-left: 700px;
+            }
+            #topright a {
+                font-size: 20px;
+                vertical-align: top;
+                display: inline-block;
+            }
+            #topinfo {
+                width: 700px;
+                padding: 20px;
+                padding-left: 40px;
+            }
+            #main {
+                width: 700px;
+                padding-left: 40px;
+                padding-top: 25px;
+            }
+            #blackline {
+                height: 3px;
+                background-color: black;
+            }
+            #bluebox {
+                background-color: #dae8f8;
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "top">
+            <h3>Add a new coach</h3>
+            <div id = "topright">
+                <a class = "btn" href = "/">Home</a>
+                <h4> | </h4>
+                <a class = "btn" href = "/profile">Back</a>
+                <h4> | </h4>
+                <a class = "btn" href = "/logout">Logout!</a>
+            </div>
+        </div>
+        <div id = "blackline"></div>
+        <div id = "main">
+            <p>Submit a new coach for the Golden State Warriors here! Don't worry about filling
+            out all of the fields below. Just fill in the form as best as you can and submit it.
+            Someone will eventually complete the form for you!</p>
+            
+            <p style = "color: blue;">* = Required Fields</p>
+            {% for message in messages%}
+                {% if 'coach' in message.tags %}
+                    <p class = "text-danger">{{message}}</p>
+                {% endif %}
+            {% endfor %}
+            <form action = "/addcoach_process" method = "post">
+                {% csrf_token %}
+                Name * : <input type = "text" name = "name">
+                <br>
+                <br>
+                Image: <input type = "url" name = "image" placeholder = "Insert image URL here">
+                <br>
+                <br>
+                Birth date * : (Must be in MM/DD/YYYY format)
+                <br>
+                <input type = "text" name = "birth_month" maxlength = "2"> /
+                <input type = "text" name = "birth_day" maxlength = "2"> /
+                <input type = "text" name = "birth_year" maxlength = "4">
+                <br>
+                <br>
+                Height: (foot, inches) 
+                <br>
+                <input type = "text" name = "height_foot" maxlength = "1"> ft.
+                <input type = "text" name = "height_inches" maxlength = "2"> in.
+                <br>
+                <br>
+                Weight: (in pounds) 
+                <input type = "text" name = "weight" maxlength = "3">
+                <br>
+                <br>
+                Position:
+                <select name = "position">
+                    <option value = "Point Guard">None</option>
+                    <option value = "Point Guard">Point Guard</option>
+                    <option value = "Shooting Guard">Shooting Guard</option>
+                    <option value = "Small Forward">Small Forward</option>
+                    <option value = "Power Forward">Power Forward</option>
+                    <option value = "Center">Center</option>
+                </select>
+                <br>
+                <br>
+                Teams played: 
+                <br>
+                <textarea name = "teams_played" rows = "3" cols = "30"></textarea>
+                <br>
+                <br>
+                Teams coached: 
+                <br>
+                <textarea name = "teams_coached" rows = "3" cols = "30"></textarea>
+                <br>
+                <br>
+                College: <input type = "text" name = "college" maxlength = "50">
+                <br>
+                <br>
+                NBA Draft: (Example: 1988 / Round: 2 / Pick: 50th overall)
+                <br>
+                <input type = "text" name = "draft">
+                <br>
+                <br>
+                Playing career: (Type (None) if the coach has not played in the NBA)
+                <br>
+                <input type = "text" name = "playfrom" maxlength = "6"> to
+                <input type = "text" name = "playto" maxlength = "6">
+                <br>
+                <br>
+                Coaching career * : 
+                <br>
+                <input type = "text" name = "coachfrom" maxlength = "4"> to
+                <input type = "text" name = "coachto" maxlength = "7">
+                <br>
+                <br>
+                Coach Position * : (Head coach, assistant coach, etc.)
+                <br>
+                <input type = "text" name = "coach_position">
+                <br>
+                <br>
+                Other info:
+                <br>
+                <textarea name = "info" rows = "3" cols = "80"></textarea>
+                <br>
+                <br>
+                Description * (Must be at least 50 characters long):
+                <br>
+                <textarea name = "description" rows = "3" cols = "80"></textarea>
+                <br>
+                Additional description: (optional)
+                <br>
+                <textarea name = "description2" rows = "3" cols = "80"></textarea>
+                <br>
+                <textarea name = "description3" rows = "3" cols = "80"></textarea>
+                <br>
+                <br>
+                <input type = "submit" value = "Submit!">
+            </form>
+        </div>
+        <div id = "blackline"></div>
+        <div id = "bluebox"></div>
+    </body>
+</html>

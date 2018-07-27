@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>Hug?</title>
+        <link rel = "stylesheet" type = "text/css" href = "blockstyle.css">
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width = device - width">
+
+        <link rel = "stylesheet"
+        href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity = "sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin = "anonymous">
+
+        <style>
+            #wrapper {
+                background-color: rgb(224, 245, 132);
+                text-align: center;
+                padding-top: 15px;
+                padding-left: 150px;
+                padding-right: 150px;
+            }
+            a {
+                font-size: 25px;
+                vertical-align: top;
+                display: inline-block;
+                padding: 10px;
+            }
+            input[type = button] {
+                margin: 0 auto;
+                padding: 3px 5px;
+                border-radius: 4px;
+            }
+            img {
+                padding: 5px;
+            }
+        </style>
+        <script type = "text/javascript">
+            function showImage(){
+                document.getElementById('loadingImage').style.visibility = "visible";
+            }
+        </script>
+    </head>
+    <body>
+        <div id = "wrapper">
+            <h2>Oh! It looks like you were trying to like a comment or a reply without logging in! </h2>
+            <h2>Sorry, but you can only do that if you are logged in.</h2>
+            <h2>How about a hug instead?</h2>
+            <br>
+            <input type = "button" value = "Yes, please!" onclick = "showImage();"/>
+            <br>
+            <img id = "loadingImage" src = "https://orig00.deviantart.net/cf0f/f/2018/196/9/6/shy_hug__by_szafir87-dchaiu0.gif" style = "visibility: hidden"/>
+            <br>
+            <br>
+            <a href = "/">Go to Homepage</a>
+            <br>
+            <a href = "https://www.deviantart.com/szafir87/art/Shy-Hug-754638552">Source Image</a>
+        </div>
+    </body>
+</html>

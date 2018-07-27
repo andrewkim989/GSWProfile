@@ -1,0 +1,132 @@
+<html><head>
+        <title>Add others</title>
+        <link rel="stylesheet" type="text/css" href="blockstyle.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = device - width">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+        <style>
+            #top {
+                padding: 12px;
+                padding-left: 40px;
+                background-color: #dae8f8;
+                font-size: 20px;
+            }
+            h3 {
+                vertical-align: top;
+                display: inline-block;
+                font-size: 30px;
+            }
+            h4 {
+                vertical-align: top;
+                display: inline-block;
+                font-size: 30px;
+                color: rgb(141, 168, 21);
+            }
+            #topright {
+                vertical-align: top;
+                display: inline-block;
+                padding-left: 400px;
+            }
+            #topright a {
+                font-size: 20px;
+                vertical-align: top;
+                display: inline-block;
+            }
+            #topinfo {
+                width: 700px;
+                padding: 20px;
+                padding-left: 40px;
+            }
+            #main {
+                width: 700px;
+                padding-left: 40px;
+                padding-top: 25px;
+            }
+            #blackline {
+                height: 3px;
+                background-color: black;
+            }
+            #bluebox {
+                background-color: #dae8f8;
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "top">
+            <h3>Add others members of the organization</h3>
+            <div id = "topright">
+                <a class = "btn" href = "/">Home</a>
+                <h4> | </h4>
+                <a class = "btn" href = "/profile">Back</a>
+                <h4> | </h4>
+                <a class = "btn" href = "/logout">Logout!</a>
+            </div>
+        </div>
+        <div id = "blackline"></div>
+        <div id = "main">
+            <p>Submit a new non-player, non-coach member of the for the Golden State
+            Warriors organization here! Don't worry about filling out all of the fields
+            below. Just fill in the form as best as you can and submit it.
+            Someone will eventually complete the form for you!</p>
+            <p style="color: blue;">* = Required fields</p>
+            {% for message in messages%}
+                {% if 'other' in message.tags %}
+                    <p class = "text-danger">{{message}}</p>
+                {% endif %}
+            {% endfor %}
+            <form action = "/addother_process" method = "post">
+                {% csrf_token %}
+                Name * : <input type = "text" name = "name">
+                <br>
+                <br>
+                Image: <input type = "url" name = "image" placeholder = "Insert image URL here">
+                <br>
+                <br>
+                Birth date * : (Must be in MM/DD/YYYY format)
+                <br>
+                <input type = "text" name = "birth_month" maxlength = "2"> /
+                <input type = "text" name = "birth_day" maxlength = "2"> /
+                <input type = "text" name = "birth_year" maxlength = "4">
+                <br>
+                <br>
+                Height: (foot, inches) 
+                <br>
+                <input type = "text" name = "height_foot" maxlength = "1"> ft.
+                <input type = "text" name = "height_inches" maxlength = "2"> in.
+                <br>
+                <br>
+                Weight: (in pounds) 
+                <input type = "text" name = "weight" maxlength = "3">
+                <br>
+                <br>
+                Position * : (General Manager, Owner, etc.) 
+                <br>
+                <input type = "text" name = "position" maxlength = "70">
+                <br>
+                <br>
+                Other info:
+                <br>
+                <textarea name="info" rows = "3" cols = "80"></textarea>
+                <br>
+                <br>
+                Description * :
+                <br>
+                <textarea name = "description" rows = "3" cols = "80"></textarea>
+                <br>
+                Additional description: (optional)
+                <br>
+                <textarea name = "description2" rows = "3" cols = "80"></textarea>
+                <br>
+                <textarea name = "description3" rows = "3" cols = "80"></textarea>
+                <br>
+                <br>
+                <input type = "submit" value = "Submit!">
+            </form>
+        </div>
+        <div id = "blackline"></div>
+        <div id = "bluebox"></div>
+    </body>
+</html>

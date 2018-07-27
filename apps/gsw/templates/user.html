@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>{{u.first_name}} {{u.last_name}}'s Profile</title>
+        <link rel = "stylesheet" type = "text/css" href = "blockstyle.css">
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width = device - width">
+
+        <link rel = "stylesheet"
+        href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity = "sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin = "anonymous">
+
+        <style>
+            #top {
+                padding: 12px;
+                padding-left: 50px;
+                background-color: rgb(117, 151, 247);
+            }
+            h3 {
+                font-size: 30px;
+                vertical-align: top;
+                display: inline-block;
+            }
+            h4 {
+                vertical-align: top;
+                display: inline-block;
+                font-size: 30px;
+            }
+            #topright {
+                vertical-align: top;
+                display: inline-block;
+                padding-left: 650px;
+            }
+            #topright a {
+                font-size: 20px;
+                color: rgb(231, 248, 200);
+                vertical-align: top;
+                display: inline-block;
+            }
+            #wrapper {
+                background-color: lightgrey;
+                height: 570px;
+                padding-left: 40px;
+            }
+            #wrapper a {
+                color: blue;
+                font-size: 25px;
+                padding-left: 25px;
+            }
+            #blackline {
+                height: 3px;
+                background-color: black;
+            }
+            #main {
+                padding: 25px;
+            }
+            #main a {
+                padding-left: 0px;
+                margin-top: 20px;
+            }
+            #act {
+                height: 370px;
+                overflow: auto;
+            }
+            #bottomcolor {
+                background-color: rgb(117, 151, 247);
+                height: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "top">
+            <h3>User Profile</h3>
+            {% if request.session.login == 'login'%}
+            <div id = "topright">
+                <a class = "btn" href = "/">Home</a>
+                <h4> | </h4>
+                <a class = "btn" href = "/profile">View Your Homepage</a>
+                <h4> | </h4>
+                <a class = "btn" href = "/logout">Logout!</a>
+            </div>
+            {% endif %}
+        </div>
+        <div id = "blackline"></div>
+        <div id = "wrapper">
+            <div id = "main">
+                <h5>Name: {{u.first_name}} {{u.last_name}}</h5>
+                <h5>Email: {{u.email}}</h5>
+                <br>
+                <h5>User Activities: ({{activities.count}})</h5>
+                <div id = "act">
+                    {% for activity in activities reversed %}
+                        <p>{{activity.activity}}</p>
+                    {% endfor %}
+                </div>
+                <br>
+            </div>
+        </div>
+        <div id = "blackline"></div>
+        <div id = "bottomcolor"></div>
+    </body>
+</html>
