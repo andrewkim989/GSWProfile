@@ -36,8 +36,6 @@ def reg_process(request):
             user = User.objects.create(first_name = request.POST['first_name'],
             last_name = request.POST['last_name'], email = request.POST['email'],
             password = p)
-            
-            messages.success(request, "You have successfully registered!", extra_tags = 'register')
 
             request.session['id'] = user.id
             return redirect('/profile')
@@ -53,8 +51,6 @@ def log_process(request):
             request.session['login'] = 'login'
             user = User.objects.filter(email = request.POST['email'])[0]
             request.session['id'] = user.id
-
-            messages.success(request, "You are logged in!", extra_tags = 'login')
 
             return redirect('/profile')
 
@@ -90,7 +86,7 @@ def addplayer_process(request):
                 messages.error(request, value, extra_tags = 'player')
             return redirect('/addplayer')
         else:
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             user = User.objects.get(id = request.session['id'])
             player = Player.objects.create(name = request.POST['name'],
             image = request.POST['image'], birth_month = request.POST['birth_month'],
@@ -140,7 +136,7 @@ def editplayer_process(request, num):
                 messages.error(request, value, extra_tags = 'player')
             return redirect('/editplayer/' + str(player.id))
         else:
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             user = User.objects.get(id = request.session['id'])
             player.name = request.POST['name']
             player.image = request.POST['image']
@@ -176,7 +172,7 @@ def comment_player(request, num):
             return redirect('/player/' + str(player.id))
         else:
             user = User.objects.get(id = request.session['id'])
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             commenter = User.objects.get(id = request.session['id'])
             c = Comment.objects.create(comment = request.POST['comment'], commenter = commenter)
             player.player_comments.add(c)
@@ -193,7 +189,7 @@ def reply_player(request, num, num2):
                 messages.error(request, value, extra_tags = 'reply')
             return redirect('/player/' + str(player.id))
         else:
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             post = Comment.objects.get(id = num2)
             reply_user = User.objects.get(id = request.session['id'])
             Reply.objects.create(reply = request.POST['reply'], replier = reply_user, comment = post)
@@ -215,7 +211,7 @@ def addcoach_process(request):
                 messages.error(request, value, extra_tags = 'coach')
             return redirect('/addcoach')
         else:
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             user = User.objects.get(id = request.session['id'])
             coach = Coach.objects.create(name = request.POST['name'],
             image = request.POST['image'], birth_month = request.POST['birth_month'],
@@ -267,7 +263,7 @@ def editcoach_process(request, num):
                 messages.error(request, value, extra_tags = 'coach')
             return redirect('/editcoach/' + str(coach.id))
         else:
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             user = User.objects.get(id = request.session['id'])
             coach.name = request.POST['name']
             coach.image = request.POST['image']
@@ -306,7 +302,7 @@ def comment_coach(request, num):
             return redirect('/coach/' + str(coach.id))
         else:
             user = User.objects.get(id = request.session['id'])
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             commenter = User.objects.get(id = request.session['id'])
             c = Comment.objects.create(comment = request.POST['comment'], commenter = commenter)
             coach.coach_comments.add(c)
@@ -323,7 +319,7 @@ def reply_coach(request, num, num2):
                 messages.error(request, value, extra_tags = 'reply')
             return redirect('/coach/' + str(coach.id))
         else:
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             post = Comment.objects.get(id = num2)
             reply_user = User.objects.get(id = request.session['id'])
             Reply.objects.create(reply = request.POST['reply'], replier = reply_user, comment = post)
@@ -345,7 +341,7 @@ def addother_process(request):
                 messages.error(request, value, extra_tags = 'other')
             return redirect('/addother')
         else:
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             user = User.objects.get(id = request.session['id'])
             other = Other.objects.create(name = request.POST['name'],
             image = request.POST['image'], birth_month = request.POST['birth_month'],
@@ -392,7 +388,7 @@ def editother_process(request, num):
                 messages.error(request, value, extra_tags = 'other')
             return redirect('/editother/' + str(other.id))
         else:
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             user = User.objects.get(id = request.session['id'])
             other.name = request.POST['name']
             other.image = request.POST['image']
@@ -422,7 +418,7 @@ def comment_other(request, num):
             return redirect('/other/' + str(other.id))
         else:
             user = User.objects.get(id = request.session['id'])
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             commenter = User.objects.get(id = request.session['id'])
             c = Comment.objects.create(comment = request.POST['comment'], commenter = commenter)
             other.other_comments.add(c)
@@ -439,7 +435,7 @@ def reply_other(request, num, num2):
                 messages.error(request, value, extra_tags = 'reply')
             return redirect('/other/' + str(other.id))
         else:
-            t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+            t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
             post = Comment.objects.get(id = num2)
             reply_user = User.objects.get(id = request.session['id'])
             Reply.objects.create(reply = request.POST['reply'], replier = reply_user, comment = post)
@@ -449,9 +445,9 @@ def reply_other(request, num, num2):
 
 def player_commentlike(request, num, num2):
     if request.session['login'] == 'logout':
-        return redirect('/hug')
+        return redirect('/signin')
     else:
-        t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+        t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
         player = Player.objects.get(id = num)
         user = User.objects.get(id = request.session['id'])
         c = Comment.objects.get(id = num2)
@@ -467,9 +463,9 @@ def player_commentlike(request, num, num2):
 
 def player_replylike(request, num, num2):
     if request.session['login'] == 'logout':
-        return redirect('/hug')
+        return redirect('/signin')
     else:
-        t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+        t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
         player = Player.objects.get(id = num)
         user = User.objects.get(id = request.session['id'])
         r = Reply.objects.get(id = num2)
@@ -484,9 +480,9 @@ def player_replylike(request, num, num2):
 
 def coach_commentlike(request, num, num2):
     if request.session['login'] == 'logout':
-        return redirect('/hug')
+        return redirect('/signin')
     else:
-        t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+        t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
         coach = Coach.objects.get(id = num)
         user = User.objects.get(id = request.session['id'])
         c = Comment.objects.get(id = num2)
@@ -501,9 +497,9 @@ def coach_commentlike(request, num, num2):
 
 def coach_replylike(request, num, num2):
     if request.session['login'] == 'logout':
-        return redirect('/hug')
+        return redirect('/signin')
     else:
-        t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+        t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
         coach = Coach.objects.get(id = num)
         user = User.objects.get(id = request.session['id'])
         r = Reply.objects.get(id = num2)
@@ -518,9 +514,9 @@ def coach_replylike(request, num, num2):
 
 def other_commentlike(request, num, num2):
     if request.session['login'] == 'logout':
-        return redirect('/hug')
+        return redirect('/signin')
     else:
-        t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+        t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
         other = Other.objects.get(id = num)
         user = User.objects.get(id = request.session['id'])
         c = Comment.objects.get(id = num2)
@@ -535,9 +531,9 @@ def other_commentlike(request, num, num2):
 
 def other_replylike(request, num, num2):
     if request.session['login'] == 'logout':
-        return redirect('/hug')
+        return redirect('/signin')
     else:
-        t = strftime("%B-%d-%Y, %I:%M %p", gmtime())
+        t = strftime("%B/%d/%Y, %I:%M %p", gmtime())
         other = Other.objects.get(id = num)
         user = User.objects.get(id = request.session['id'])
         r = Reply.objects.get(id = num2)
@@ -561,7 +557,7 @@ def userprofile (request, num):
 
 def edit(request):
     if request.session['login'] == 'logout':
-        return redirect('/nope')
+        return redirect('/oops')
     else:
         user = User.objects.get(id = request.session['id'])
         context = {
@@ -588,8 +584,13 @@ def edit_process(request):
 def oops(request):
     return render(request, "oops.html")
 
-def nope(request):
-    return render(request, "nope.html")
+# http://13.59.234.218/
 
-def hug(request):
-    return render(request, "hug.html")
+'''
+purplesmart@eq.net Twily123
+glimglam@eq.net Glimmy25
+20cooler@eq.net Dashie20
+partypony@eq.net Pinkie30
+nightprincess@eq.net Moon0204
+sunprincess@eq.net Sunny111
+'''
