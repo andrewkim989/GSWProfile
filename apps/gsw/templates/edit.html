@@ -1,9 +1,6 @@
 <html>
     <head>
         <title>Edit Your Profile</title>
-        <link rel = "stylesheet" type = "text/css" href = "blockstyle.css">
-        <meta charset = "utf-8">
-        <meta name = "viewport" content = "width = device - width">
 
         <link rel = "stylesheet"
         href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -59,7 +56,7 @@
         <div id = "top">
             <h4>Edit Profile</h4>
             <div id = "topright">
-                <a class = "btn" href = "/profile">Back</a>
+                <a class = "btn" href = "javascript:window.history.back();">Back</a>
                 <h4> | </h4>
                 <a class = "btn" href = "/">Home</a>
                 <h4> | </h4>
@@ -79,20 +76,21 @@
                 <form action = '/editprofile_process' method = 'post'>
                     {% csrf_token %}
                     <h5>First Name:</h5>
-                    <input type = 'text' name = 'first_name'>
+                    <input type = 'text' name = 'first_name' value = "{{user.first_name}}">
                     <br>
                     <br>
                     <h5>Last Name:</h5>
-                    <input type = 'text' name = 'last_name'>                        
+                    <input type = 'text' name = 'last_name' value = "{{user.last_name}}">                        
                     <br>
                     <br>
                     <h5>E-mail:</h5>
-                    <input type = 'text' name = 'email'>
+                    <input type = 'text' name = 'email' value = "{{user.email}}">
                     <br>
                     <br>
-                    <input type = 'submit' value = 'Update'>
+                    <input type = 'submit' value = 'Update' disabled>
                 </form>
                 <br>
+                <h1>This page is under construction, so the edit feature is not available yet.</h1>
             </div>
         </div>
         <div id = "blackline"></div>

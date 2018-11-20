@@ -1,9 +1,6 @@
 <html>
     <head>
         <title>Add Coach</title>
-        <link rel="stylesheet" type="text/css" href="blockstyle.css">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width = device - width">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
@@ -61,7 +58,7 @@
             <div id = "topright">
                 <a class = "btn" href = "/">Home</a>
                 <h4> | </h4>
-                <a class = "btn" href = "/profile">Back</a>
+                <a class = "btn" href = "javascript:window.history.back();">Back</a>
                 <h4> | </h4>
                 <a class = "btn" href = "/logout">Logout!</a>
             </div>
@@ -105,7 +102,7 @@
                 <br>
                 Position:
                 <select name = "position">
-                    <option value = "Point Guard">None</option>
+                    <option value = "None">None</option>
                     <option value = "Point Guard">Point Guard</option>
                     <option value = "Shooting Guard">Shooting Guard</option>
                     <option value = "Small Forward">Small Forward</option>
@@ -165,7 +162,7 @@
                 <textarea name = "description3" rows = "3" cols = "80"></textarea>
                 <br>
                 <br>
-                <input type = "submit" value = "Submit!">
+                <input type = "submit" class = "btn btn-secondary" value = "Submit!">
             </form>
         </div>
         <div id = "blackline"></div>

@@ -1,9 +1,6 @@
 <html>
     <head>
         <title>{{other.name}}'s Profile</title>
-        <link rel = "stylesheet" type = "text/css" href = "blockstyle.css">
-        <meta charset = "utf-8">
-        <meta name = "viewport" content = "width = device - width">
 
         <link rel = "stylesheet"
         href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -13,17 +10,19 @@
         <style>
             #top {
                 background-color: rgb(93, 50, 250);
-                padding: 20px;
                 padding-left: 70px;
                 font-size: 25px;
             }
             #topright {
-                padding-left: 600px;
                 display: inline-block;
-                vertical-align: top;
             }
             #top a {
                 color: white;
+                display: inline-block;
+            }
+            #top img {
+                height: 120px;
+                width: 120px;
             }
             h1 {
                 text-align: center;
@@ -38,12 +37,14 @@
                 background-color: black;
             }
             #main {
-                text-align: center;
-                width: 1200px;
-                margin: 0 auto;
+                margin-left: 50px;
+                margin-top: 10px;
             }
-            img {
+            #main img {
                 padding: 10px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
             }
             #commentcount {
                 padding: 15px;
@@ -77,48 +78,98 @@
             }
             #bottom {
                 background-color: rgb(93, 50, 250);
-                padding: 20px;
+                padding: 15px;
+                padding-left: 30px;
+                font-size: 21px;
                 color: white;
             }
             #bottom a {
                 color: white;
             }
-            #created {
+            #maindescription {
+                display: inline-block;
+                width: 700px;
+                margin-top: 15px;
+            }
+            table {
+                border: 1px solid black;
+                border-collapse: collapse;
+                margin: 15px;
+                margin-left: 20px;
+                margin-right: 0px;
+                margin-bottom: 30px;
+                display: inline-block;
+                vertical-align: top;
+            }
+            th {
+                text-align: left;
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+                padding-right: 30px;
+                background-color: rgb(7, 10, 185);
                 color: white;
-                float: right;
+            }
+            tr td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 10px;
+                width: 300px;
+                background-color: rgb(220, 232, 255);
             }
         </style>
     </head>
     <body>
         <div id = "top">
-            <a href = "/">Home</a>
-            <div id = "topright">
-                {% if request.session.login == 'logout'%}
-                <a href = "/">Back</a>
+            <a href = "/"><img src = "https://d1si3tbndbzwz9.cloudfront.net/basketball/team/16/logo.png"></a>
+            {% if request.session.login == 'logout'%}
+            <div id = "topright" style = "margin-left: 650px;">
+                <a href = "javascript:window.history.back();">Back</a>
                 <h4>|</h4>
                 <a href = "/signin">Sign in here to edit this page!</a>
-                {% endif %}
-                {% if request.session.login == 'login'%}
-                    <a href = "/editother/{{other.id}}">Edit Member Profile</a>
-                    <h4>|</h4>
-                    <a href = "/profile">User Homepage</a>
-                    <h4>|</h4>
-                    <a href = "/logout">Logout!</a>
-                {% endif %}
             </div>
+            {% endif %}
+            {% if request.session.login == 'login'%}
+            <div id = "topright" style = "margin-left: 550px;">
+                <a href = "/editother/{{other.id}}">Edit Member Profile</a>
+                <h4>|</h4>
+                <a href = "/profile">User Homepage</a>
+                <h4>|</h4>
+                <a href = "/logout">Logout!</a>
+            </div>
+            {% endif %}
         </div>
         <div id = "blackline"></div>
         <div id = "main">
+            <h1>{{other.name}}</h1>
             <img src = "{{other.image}}">
-            <p><b>Name: </b>{{other.name}}</p>
-            <p><b>Birth Date: </b>{{other.birth_month}}/{{other.birth_day}}/{{other.birth_year}}</p>
-            <p><b>Height: </b>{{other.height_foot}}ft. {{other.height_inches}}in.</p>
-            <p><b>Weight: </b>{{other.weight}}</p>
-            <p><b>Position: </b>{{other.position}}</p>
-            <p><b>Other information: </b>{{other.info}}</p>
-            <p style = "text-align: left;"><b>Description: </b>{{other.description}}</p>
-            <p style = "text-align: left;">{{other.description2}}</p>
-            <p style = "text-align: left;">{{other.description3}}</p>
+            <div id = "maindescription">
+                <p>{{other.description}}</p>
+                <p>{{other.description2}}</p>
+                <p>{{other.description3}}</p>
+            </div>
+            <table>
+                <tr>
+                    <th>Birth Date</th>
+                    <td>{{other.birth_month}}/{{other.birth_day}}/{{other.birth_year}}</td>
+                </tr>
+                <tr>
+                    <th>Height</th>
+                    <td>{{other.height_foot}}ft. {{other.height_inches}}in.</td>
+                </tr>
+                <tr>
+                    <th>Weight</th>
+                    <td>{{other.weight}} lbs.</td>
+                </tr>
+                <tr>
+                    <th>Position</th>
+                    <td>{{other.position}}</td>
+                </tr>
+                <tr>
+                    <th>Other Information</th>
+                    <td>{{other.info}}</td>
+                </tr>
+            </table>
         </div>
 
         <div id = "commentcount">

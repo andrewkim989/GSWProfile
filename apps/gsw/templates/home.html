@@ -1,9 +1,6 @@
 <html>
     <head>
         <title>Golden State Warriors Homepage</title>
-        <link rel = "stylesheet" type = "text/css" href = "blockstyle.css">
-        <meta charset = "utf-8">
-        <meta name = "viewport" content = "width = device - width">
 
         <link rel = "stylesheet"
         href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -14,7 +11,7 @@
             #top {
                 background-color: rgb(93, 50, 250);
                 padding: 20px;
-                padding-left: 1100px;
+                padding-left: 1050px;
                 font-size: 25px;
             }
             #top a {
@@ -89,7 +86,7 @@
                 <a href = "/signin"><u>Sign in here!</u></a>
             {% endif%}
             {% if request.session.login == 'login'%}
-                <a href = "/profile"><u>Profile</u></a>
+                <a href = "/profile"><u>User Profile</u></a>
                 <h4>|</h4>
                 <a href = "/logout"><u>Logout!</u></a>
             {% endif%}
@@ -110,13 +107,13 @@
         </div>
         <div id = "all">
             <div id = "players">
-                <h6><u>List of players</u></h6>
+                <h6><u>Players</u></h6>
                 {% for player in players %}
                     <p><a href = "/player/{{player.id}}">{{player.name}}</a></p>
                 {% endfor %}
             </div>
             <div id = "coaches">
-                <h6><u>List of coaches</u></h6>
+                <h6><u>Coaches</u></h6>
                 {% for coach in coaches %}
                     <p><a href = "/coach/{{coach.id}}">{{coach.name}}</a></p>
                 {% endfor %}
@@ -132,7 +129,7 @@
         <div id = "bottom">
             <a href = "/">Back to top</a>
             <div id = "created">
-                <p>Created by: Andrew Kim</p>
+                <p>© 2018 Andrew Kim</p>
             </div>
         </div>
     </body>

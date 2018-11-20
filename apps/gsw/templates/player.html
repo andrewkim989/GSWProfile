@@ -1,29 +1,28 @@
 <html>
     <head>
         <title>{{player.name}}'s Profile</title>
-        <link rel = "stylesheet" type = "text/css" href = "blockstyle.css">
-        <meta charset = "utf-8">
-        <meta name = "viewport" content = "width = device - width">
 
         <link rel = "stylesheet"
         href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity = "sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
         crossorigin = "anonymous">
-
+        
         <style>
             #top {
                 background-color: rgb(93, 50, 250);
-                padding: 20px;
                 padding-left: 70px;
                 font-size: 25px;
             }
             #topright {
-                padding-left: 620px;
                 display: inline-block;
-                vertical-align: top;
             }
             #top a {
+                display: inline-block;
                 color: white;
+            }
+            #top img {
+                height: 120px;
+                width: 120px;
             }
             h1 {
                 text-align: center;
@@ -38,12 +37,14 @@
                 background-color: black;
             }
             #main {
-                width: 1200px;
-                text-align: center;
-                margin: 0 auto;
+                margin-left: 50px;
+                margin-top: 10px;
             }
-            img {
+            #main img {
                 padding: 10px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
             }
             #commentcount {
                 padding: 15px;
@@ -77,53 +78,118 @@
             }
             #bottom {
                 background-color: rgb(93, 50, 250);
-                padding: 20px;
+                padding: 15px;
+                padding-left: 30px;
+                font-size: 21px;
                 color: white;
             }
             #bottom a {
                 color: white;
             }
-            #created {
+            #maindescription {
+                display: inline-block;
+                width: 700px;
+                margin-top: 15px;
+            }
+            table {
+                border: 1px solid black;
+                border-collapse: collapse;
+                margin: 15px;
+                margin-left: 20px;
+                margin-right: 0px;
+                margin-bottom: 30px;
+                display: inline-block;
+                vertical-align: top;
+            }
+            th {
+                text-align: left;
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+                padding-right: 30px;
+                background-color: rgb(7, 10, 185);
                 color: white;
-                float: right;
+            }
+            tr td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 10px;
+                width: 300px;
+                background-color: rgb(220, 232, 255);
             }
         </style>
     </head>
     <body>
         <div id = "top">
-            <a href = "/">Home</a>
-            <div id = "topright">
+            <a href = "/"><img src = "https://d1si3tbndbzwz9.cloudfront.net/basketball/team/16/logo.png"></a>
             {% if request.session.login == 'logout'%}
-                <a href = "/">Back</a>
+            <div id = "topright" style = "margin-left: 650px;">
+                <a href = "javascript:window.history.back();">Back</a>
                 <h4>|</h4>
                 <a href = "/signin">Sign in here to edit this page!</a>
+            </div>
             {% endif %}
             {% if request.session.login == 'login'%}
+            <div id = "topright" style = "margin-left: 550px;">
                 <a href = "/editplayer/{{player.id}}">Edit Player Profile</a>
                 <h4>|</h4>
                 <a href = "/profile">User Homepage</a>
                 <h4>|</h4>
                 <a href = "/logout">Logout!</a>
-            {% endif %}
             </div>
+            {% endif %}
         </div>
         <div id = "blackline"></div>
         <div id = "main">
+            <h1>{{player.name}}</h1>
             <img src = "{{player.image}}">
-            <p><b>Name: </b>{{player.name}}</p>
-            <p><b>Birth Date: </b>{{player.birth_month}}/{{player.birth_day}}/{{player.birth_year}}</p>
-            <p><b>Height: </b>{{player.height_foot}}ft. {{player.height_inches}}in.</p>
-            <p><b>Weight: </b>{{player.weight}}</p>
-            <p><b>Position: </b>{{player.position}}</p>
-            <p><b>Previous teams played: </b>{{player.previous_teams}}</p>
-            <p><b>College: </b>{{player.college}}</p>
-            <p><b>Draft: </b>{{player.draft}}</p>
-            <p><b>Jersey Number: </b>{{player.jersey}}</p>
-            <p><b>Playing career: </b>{{player.playfrom}} to {{player.playto}}</p>
-            <p><b>Other information: </b>{{player.info}}</p>
-            <p style = "text-align: left;"><b>Description: </b>{{player.description}}</p>
-            <p style = "text-align: left;">{{player.description2}}</p>
-            <p style = "text-align: left;">{{player.description3}}</p>
+            <div id = "maindescription">
+                <p>{{player.description}}</p>
+                <p>{{player.description2}}</p>
+                <p>{{player.description3}}</p>
+            </div>
+            <table>
+                <tr>
+                    <th>Birth Date</th>
+                    <td>{{player.birth_month}}/{{player.birth_day}}/{{player.birth_year}}</td>
+                </tr>
+                <tr>
+                    <th>Height</th>
+                    <td>{{player.height_foot}}ft. {{player.height_inches}}in.</td>
+                </tr>
+                <tr>
+                    <th>Weight</th>
+                    <td>{{player.weight}} lbs.</td>
+                </tr>
+                <tr>
+                    <th>Position</th>
+                    <td>{{player.position}}</td>
+                </tr>
+                <tr>
+                    <th>Previous teams</th>
+                    <td>{{player.previous_teams}}</td>
+                </tr>
+                <tr>
+                    <th>College</th>
+                    <td>{{player.college}}</td>
+                </tr>
+                <tr>
+                    <th>Draft</th>
+                    <td>{{player.draft}}</td>
+                </tr>
+                <tr>
+                    <th>Jersey Number</th>
+                    <td>{{player.jersey}}</td>
+                </tr>
+                <tr>
+                    <th>Playing Career</th>
+                    <td>{{player.playfrom}} to {{player.playto}}</td>
+                </tr>
+                <tr>
+                    <th>Other Information</th>
+                    <td>{{player.info}}</td>
+                </tr>
+            </table>
         </div>
         <div id = "commentcount">
             <h5>Comments: {{all}}</h5>
@@ -132,7 +198,7 @@
                     {% csrf_token %}
                     <textarea name = "comment" rows = "3" cols = "90"></textarea>
                     <br>
-                    <input type = "submit" value = "Post Comment">
+                    <input type = "submit" class = "btn btn-primary" value = "Post Comment">
                 </form>
             {% endif %}
         </div>
@@ -156,7 +222,7 @@
                         <form action = '/player_commentlike/{{player.id}}/{{comment.id}}'
                         method = 'post'>
                             {% csrf_token %}
-                            <input type = "submit" value = "Like">
+                            <input type = "submit" class = "btn btn-light" value = "Like">
                         </form>
                     {% endif %}
                     {% for reply in comment.replied_comment.all %}
@@ -169,7 +235,7 @@
                             <form action = '/player_replylike/{{player.id}}/{{reply.id}}'
                             method = 'post'>
                                 {% csrf_token %}
-                                <input type = "submit" value = "Like">
+                                <input type = "submit" class = "btn btn-light" value = "Like">
                             </form>
                             {% endif %}
                         </div>
@@ -179,7 +245,7 @@
                             {% csrf_token %}
                             <textarea name = "reply" rows = "3" cols = "90"></textarea>
                             <br>
-                            <input type = "submit" value = "Post Reply">
+                            <input type = "submit" class = "btn btn-dark"  value = "Post Reply">
                         </form>
                     {% endif %}
                 </div>
@@ -189,8 +255,7 @@
         <div id = "bottom">
             <p>Created by: <a href = "/user/{{player.player_creator.id}}">
             {{player.player_creator.first_name}} {{player.player_creator.last_name}}</a>
-            at {{player.created_at}}
-            </p>
+            at {{player.created_at}} </p>
             <a href = "/player/{{player.id}}"><u>Back to top</u></a>
         </div>
     </body>

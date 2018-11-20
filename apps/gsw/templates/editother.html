@@ -1,9 +1,6 @@
 <html>
     <head>
         <title>Edit Profile</title>
-        <link rel = "stylesheet" type = "text/css" href = "blockstyle.css">
-        <meta charset = "utf-8">
-        <meta name = "viewport" content =" width = device - width">
 
         <link rel = "stylesheet" href =
         "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -54,7 +51,7 @@
         <div id = "top">
             <h4>Edit Profile</h4>
             <div id = "topright">
-                <a href = "/other/{{other.id}}">Back</a>
+                <a href = "javascript:window.history.back();">Back</a>
                 <h5> | </h5>
                 <a href = "/logout">Logout!</a>
             </div>
@@ -114,7 +111,7 @@
                 <textarea name = "description3" rows = "3" cols = "80">{{other.description3}}</textarea>
                 <br>
                 <br>
-                <input type = "submit" value = "Submit!">
+                <input type = "submit" class = "btn btn-success" value = "Submit!">
             </form>
         </div>
         <div id = "blackline"></div>
